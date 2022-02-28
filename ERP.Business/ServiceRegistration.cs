@@ -32,7 +32,9 @@ namespace ERP.Business
         }
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
-            return services.AddTransient<IProductRepository, ProductRepository>();
+            return services.AddTransient<IProductRepository, ProductRepository>()
+                .AddTransient<IBuyOrderRepository, BuyOrderRepository>()
+                .AddTransient<ISupplyTermsContractRepository, SupplyTermsContractRepository>();
 
 
         }
