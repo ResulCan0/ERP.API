@@ -4,6 +4,7 @@ public class Supplier : IEntity
 {
     #region Primary Key
 
+    public int SupplierId { get; set; }
     #endregion
 
     #region Columns
@@ -12,13 +13,17 @@ public class Supplier : IEntity
     public string SupplierAddress { get; set; }
     public string SupplierPhone { get; set; }
 
+    public bool IsServiceContractSigned { get; set; }
+
     #endregion
 
     #region Foreign Keys
 
-    public int SupplierId { get; set; }
+    public User User { get; set; }
+
+    public ICollection<ServiceContract> ServiceContract { get; set; }
 
     #endregion
     
-    public User User { get; set; }
+
 }

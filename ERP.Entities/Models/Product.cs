@@ -15,7 +15,9 @@ public class Product : IEntity
     public string ProductName { get; set; }
 
     #endregion
+    
     #region Foreign Key 
     public ICollection<ProductDemand> ProductDemand { get; set; }
+    public ICollection<Stock> Stock { get; set; }  
     #endregion
 }

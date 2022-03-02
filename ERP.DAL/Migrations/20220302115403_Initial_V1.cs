@@ -23,22 +23,6 @@ namespace ERP.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductDetail",
-                columns: table => new
-                {
-                    ProductDetailId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Aesthetic = table.Column<int>(type: "int", nullable: false),
-                    Usability = table.Column<int>(type: "int", nullable: false),
-                    Innovation = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductDetail", x => x.ProductDetailId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ProductQualityDetails",
                 columns: table => new
                 {
@@ -142,6 +126,29 @@ namespace ERP.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Supplier",
+                columns: table => new
+                {
+                    SupplierId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SupplierName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SupplierAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SupplierPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsServiceContractSigned = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Supplier", x => x.SupplierId);
+                    table.ForeignKey(
+                        name: "FK_Supplier_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Bid",
                 columns: table => new
                 {
@@ -158,6 +165,60 @@ namespace ERP.DAL.Migrations
                         column: x => x.BuyOrderOrderId,
                         principalTable: "BuyOrder",
                         principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Stock",
+                columns: table => new
+                {
+                    StockId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ProductQualityDetailsQualityDetailId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    DealerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stock", x => x.StockId);
+                    table.ForeignKey(
+                        name: "FK_Stock_Dealer_DealerId",
+                        column: x => x.DealerId,
+                        principalTable: "Dealer",
+                        principalColumn: "DealerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Stock_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Stock_ProductQualityDetails_ProductQualityDetailsQualityDetailId",
+                        column: x => x.ProductQualityDetailsQualityDetailId,
+                        principalTable: "ProductQualityDetails",
+                        principalColumn: "QualityDetailId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceContract",
+                columns: table => new
+                {
+                    ServiceContractId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SupplierId = table.Column<int>(type: "int", nullable: false),
+                    IsSıgned = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceContract", x => x.ServiceContractId);
+                    table.ForeignKey(
+                        name: "FK_ServiceContract_Supplier_SupplierId",
+                        column: x => x.SupplierId,
+                        principalTable: "Supplier",
+                        principalColumn: "SupplierId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -180,6 +241,31 @@ namespace ERP.DAL.Migrations
                 name: "IX_ProductDemand_ProductId",
                 table: "ProductDemand",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceContract_SupplierId",
+                table: "ServiceContract",
+                column: "SupplierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stock_DealerId",
+                table: "Stock",
+                column: "DealerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stock_ProductId",
+                table: "Stock",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stock_ProductQualityDetailsQualityDetailId",
+                table: "Stock",
+                column: "ProductQualityDetailsQualityDetailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Supplier_UserId",
+                table: "Supplier",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -188,28 +274,34 @@ namespace ERP.DAL.Migrations
                 name: "Bid");
 
             migrationBuilder.DropTable(
-                name: "Dealer");
-
-            migrationBuilder.DropTable(
                 name: "ProductDemand");
 
             migrationBuilder.DropTable(
-                name: "ProductDetail");
+                name: "ServiceContract");
 
             migrationBuilder.DropTable(
-                name: "ProductQualityDetails");
+                name: "Stock");
 
             migrationBuilder.DropTable(
                 name: "BuyOrder");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Supplier");
+
+            migrationBuilder.DropTable(
+                name: "Dealer");
 
             migrationBuilder.DropTable(
                 name: "Product");
 
             migrationBuilder.DropTable(
+                name: "ProductQualityDetails");
+
+            migrationBuilder.DropTable(
                 name: "SupplyTermsContract");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

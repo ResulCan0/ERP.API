@@ -19,5 +19,6 @@ public class ProductQualityDetails : IEntity
 
     #region Foreign Keys
 
+    public ICollection<Stock> Stock { get; set; }  
     #endregion
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.DAL.Migrations
 {
     [DbContext(typeof(ERPDbContext))]
-    [Migration("20220302070846_Initial_V1")]
+    [Migration("20220302115403_Initial_V1")]
     partial class Initial_V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,31 +124,6 @@ namespace ERP.DAL.Migrations
                     b.ToTable("ProductDemand");
                 });
 
-            modelBuilder.Entity("ERP.Entities.Models.ProductDetail", b =>
-                {
-                    b.Property<int>("ProductDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductDetailId"), 1L, 1);
-
-                    b.Property<int>("Aesthetic")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Innovation")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Usability")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductDetailId");
-
-                    b.ToTable("ProductDetail");
-                });
-
             modelBuilder.Entity("ERP.Entities.Models.ProductQualityDetails", b =>
                 {
                     b.Property<int>("QualityDetailId")
@@ -172,6 +147,91 @@ namespace ERP.DAL.Migrations
                     b.HasKey("QualityDetailId");
 
                     b.ToTable("ProductQualityDetails");
+                });
+
+            modelBuilder.Entity("ERP.Entities.Models.ServiceContract", b =>
+                {
+                    b.Property<int>("ServiceContractId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceContractId"), 1L, 1);
+
+                    b.Property<bool>("IsSıgned")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ServiceContractId");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("ServiceContract");
+                });
+
+            modelBuilder.Entity("ERP.Entities.Models.Stock", b =>
+                {
+                    b.Property<int>("StockId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StockId"), 1L, 1);
+
+                    b.Property<int>("DealerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductQualityDetailsQualityDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("StockId");
+
+                    b.HasIndex("DealerId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ProductQualityDetailsQualityDetailId");
+
+                    b.ToTable("Stock");
+                });
+
+            modelBuilder.Entity("ERP.Entities.Models.Supplier", b =>
+                {
+                    b.Property<int>("SupplierId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierId"), 1L, 1);
+
+                    b.Property<bool>("IsServiceContractSigned")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SupplierAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SupplierId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Supplier");
                 });
 
             modelBuilder.Entity("ERP.Entities.Models.SupplyTermsContract", b =>
@@ -259,14 +319,80 @@ namespace ERP.DAL.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("ERP.Entities.Models.ServiceContract", b =>
+                {
+                    b.HasOne("ERP.Entities.Models.Supplier", "Supplier")
+                        .WithMany("ServiceContract")
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("ERP.Entities.Models.Stock", b =>
+                {
+                    b.HasOne("ERP.Entities.Models.Dealer", "Dealer")
+                        .WithMany("Stock")
+                        .HasForeignKey("DealerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ERP.Entities.Models.Product", "Product")
+                        .WithMany("Stock")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ERP.Entities.Models.ProductQualityDetails", "ProductQualityDetails")
+                        .WithMany("Stock")
+                        .HasForeignKey("ProductQualityDetailsQualityDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dealer");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("ProductQualityDetails");
+                });
+
+            modelBuilder.Entity("ERP.Entities.Models.Supplier", b =>
+                {
+                    b.HasOne("ERP.Entities.Models.User", "User")
+                        .WithMany("Supplier")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ERP.Entities.Models.BuyOrder", b =>
                 {
                     b.Navigation("Bid");
                 });
 
+            modelBuilder.Entity("ERP.Entities.Models.Dealer", b =>
+                {
+                    b.Navigation("Stock");
+                });
+
             modelBuilder.Entity("ERP.Entities.Models.Product", b =>
                 {
                     b.Navigation("ProductDemand");
+
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("ERP.Entities.Models.ProductQualityDetails", b =>
+                {
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("ERP.Entities.Models.Supplier", b =>
+                {
+                    b.Navigation("ServiceContract");
                 });
 
             modelBuilder.Entity("ERP.Entities.Models.SupplyTermsContract", b =>
@@ -277,6 +403,8 @@ namespace ERP.DAL.Migrations
             modelBuilder.Entity("ERP.Entities.Models.User", b =>
                 {
                     b.Navigation("Dealer");
+
+                    b.Navigation("Supplier");
                 });
 #pragma warning restore 612, 618
         }

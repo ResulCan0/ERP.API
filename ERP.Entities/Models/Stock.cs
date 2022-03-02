@@ -4,7 +4,7 @@ public class Stock : IEntity
 {
     #region Primary Key
 
-    public int Id { get; set; }
+    public int StockId { get; set; }
 
     #endregion
 
