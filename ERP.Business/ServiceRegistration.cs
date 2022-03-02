@@ -34,6 +34,14 @@ namespace ERP.Business
         {
             return services.AddTransient<IProductRepository, ProductRepository>()
                 .AddTransient<IBuyOrderRepository, BuyOrderRepository>()
+                .AddTransient<IBidRepository,BidRepository>()
+                .AddTransient<IDealerRepository, DealerRepository>()
+                .AddTransient<IProductDemandRepository, ProductDemandRepository>()
+                .AddTransient<IProductQualityDetailsRepository, ProductQualityDetailsRepository>()
+                .AddTransient<IServiceContractRepository, ServiceContractRepository>()
+                .AddTransient<IStockRepository, StockRepository>()
+                .AddTransient<ISupplierRepository, SupplierRepository>()
+                .AddTransient<IUserRepository, UserRepository>()
                 .AddTransient<ISupplyTermsContractRepository, SupplyTermsContractRepository>();
 
 

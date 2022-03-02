@@ -5,9 +5,9 @@ using ERP.Entities.Models;
 
 namespace ERP.DAL.Concrete.Repository;
 
-public class SupplierRepository_:EfEntityRepositoryBase<Supplier,ERPDbContext>,ISupplierRepository
+public class SupplierRepository: EfEntityRepositoryBase<Supplier,ERPDbContext>,ISupplierRepository
 {
-    public SupplierRepository_(ERPDbContext context) : base(context)
+    public SupplierRepository(ERPDbContext context) : base(context)
     {
     }
 }
