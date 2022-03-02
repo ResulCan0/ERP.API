@@ -19,4 +19,8 @@
     <ProjectReference Include="..\ERP.DAL\ERP.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers" />
+  </ItemGroup>
+
 </Project>
