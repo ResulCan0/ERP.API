@@ -24,6 +24,11 @@ namespace ERP.DAL.Concrete.EntityFramework.Context
         public virtual DbSet<Bid> Bid { get; set; }
         public virtual DbSet<BuyOrder> BuyOrder { get; set; }
         public virtual DbSet<SupplyTermsContract> SupplyTermsContract { get; set; }
+        public virtual DbSet<ProductDemand> ProductDemand { get; set; }
+        public virtual DbSet<Dealer> Dealer { get; set; }
+        public virtual DbSet<ProductDetail> ProductDetail { get; set; }
+        public virtual DbSet<ProductQualityDetails> ProductQualityDetails { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,6 +36,10 @@ namespace ERP.DAL.Concrete.EntityFramework.Context
             modelBuilder.Entity<Bid>().HasKey("BidId");
             modelBuilder.Entity<BuyOrder>().HasKey("OrderId");
             modelBuilder.Entity<SupplyTermsContract>().HasKey("SupplyTermsContractId");
+            modelBuilder.Entity<ProductDemand>().HasKey("DemandId");
+            modelBuilder.Entity<Dealer>().HasKey("DealerId");
+            modelBuilder.Entity<ProductDetail>().HasKey("ProductDetailId");
+            modelBuilder.Entity<ProductQualityDetails>().HasKey("QualityDetailId");
         }
 
     }

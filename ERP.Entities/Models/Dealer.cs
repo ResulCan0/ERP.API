@@ -3,6 +3,8 @@
 public class Dealer : IEntity
 {
     #region Primary Key
+    public int DealerId { get; set; }
+
     #endregion
 
     #region Columns
@@ -13,10 +15,8 @@ public class Dealer : IEntity
     #endregion
 
     #region Foreign Keys
-
-    public int DealerId { get; set; }
-
+    public User User { get; set; }
     #endregion
 
-    public User User { get; set; }
+
 }

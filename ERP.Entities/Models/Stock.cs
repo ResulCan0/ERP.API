@@ -16,13 +16,11 @@ public class Stock : IEntity
 
     #region Foreign Keys
 
-    public int QualityDetailID { get; set; }
-    public int ProductId { get; set; }
-    public int DealerID { get; set; }
-
-    #endregion
-
     public ProductQualityDetails ProductQualityDetails { get; set; }
     public Product Product { get; set; }
     public Dealer Dealer { get; set; }
+
+    #endregion
+
+
 }

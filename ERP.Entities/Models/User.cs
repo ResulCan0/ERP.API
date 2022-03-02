@@ -17,6 +17,6 @@ public class User : IEntity
     #endregion
 
     #region Foreign Keys
-
+    public ICollection<Dealer> Dealer { get; set; }
     #endregion#region
 }

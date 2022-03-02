@@ -14,9 +14,9 @@ public class ProductDemand : IEntity
 
     #region Foreign Keys
 
-    public int ProductId { get; set; }
+    public Product Product { get; set; }
 
     #endregion
 
-    public Product Product { get; set; }
+
 }
