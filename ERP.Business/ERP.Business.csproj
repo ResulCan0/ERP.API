@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Abp" Version="7.1.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
   </ItemGroup>
@@ -14,6 +15,10 @@
   <ItemGroup>
     <ProjectReference Include="..\ERP.Core\ERP.Core.csproj" />
     <ProjectReference Include="..\ERP.DAL\ERP.DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Handler" />
   </ItemGroup>
 
 </Project>

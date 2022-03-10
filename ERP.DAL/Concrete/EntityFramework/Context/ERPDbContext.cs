@@ -1,4 +1,4 @@
-﻿using ERP.Entities.Models;
+﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -20,30 +20,9 @@ namespace ERP.DAL.Concrete.EntityFramework.Context
             optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SqlConStr"));
         }
 
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Bid> Bid { get; set; }
-        public virtual DbSet<BuyOrder> BuyOrder { get; set; }
-        public virtual DbSet<SupplyTermsContract> SupplyTermsContract { get; set; }
-        public virtual DbSet<ProductDemand> ProductDemand { get; set; }
-        public virtual DbSet<Dealer> Dealer { get; set; }
-        public virtual DbSet<ProductQualityDetails> ProductQualityDetails { get; set; }
-        public virtual DbSet<ServiceContract> ServiceContract { get; set; }
-        public virtual DbSet<Stock> Stock { get; set; }
-        public virtual DbSet<Supplier> Supplier { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Product>().HasKey("ProductId");
-            modelBuilder.Entity<Bid>().HasKey("BidId");
-            modelBuilder.Entity<BuyOrder>().HasKey("OrderId");
-            modelBuilder.Entity<SupplyTermsContract>().HasKey("SupplyTermsContractId");
-            modelBuilder.Entity<ProductDemand>().HasKey("DemandId");
-            modelBuilder.Entity<Dealer>().HasKey("DealerId");
-            modelBuilder.Entity<ProductQualityDetails>().HasKey("QualityDetailId");
-            modelBuilder.Entity<ServiceContract>().HasKey("ServiceContractId");
-            modelBuilder.Entity<Stock>().HasKey("StockId");
-            modelBuilder.Entity<Supplier>().HasKey("SupplierId");
         }
 
     }
