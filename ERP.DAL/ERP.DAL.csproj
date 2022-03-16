@@ -19,11 +19,4 @@
     <ProjectReference Include="..\ERP.Entities\ERP.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstract" />
-    <Folder Include="Concrete\Configurations" />
-    <Folder Include="Concrete\Repository" />
-    <Folder Include="Migrations" />
-  </ItemGroup>
-
 </Project>
