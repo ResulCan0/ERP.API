@@ -70,12 +70,13 @@ public class CreateDealerCommand : IRequest<IResponse>
                         $"Sadece Rakamsal Değer Girilmelidir."
                     });
             }
-            
-
             _dealerRepository.Add(addDealer);
             await _dealerRepository.SaveChangesAsync();
-
-            return new Response<Dealer>(addDealer);
+            
+            throw new UserFriendlyException(Messages.Added,new List<string>()
+                {
+                   $"{request.Name} Bayiniz Sisteme Eklendi." 
+                });
         }
     }
 }

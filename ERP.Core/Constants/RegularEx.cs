@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Core.Constants;
+
 public static class RegularEx
 {
     public static bool IsNumeric(string num)

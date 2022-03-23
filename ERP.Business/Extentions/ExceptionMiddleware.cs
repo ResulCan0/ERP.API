@@ -20,10 +20,10 @@ public class ExceptionMiddleware : IMiddleware
             Result result = new Result();
             switch (ex)
             {
-                case UserFriendlyException:
-                    result.StatusCode = (int) ((UserFriendlyException) ex).SubStatusCode;
-                    result.Message = ((UserFriendlyException) ex).ExceptionTypeEnum.ToString();
-                    result.ErrorDetail=((UserFriendlyException) ex).ErrorMessage;
+                case UserFriendlyException e:
+                    result.StatusCode = e.SubStatusCode;
+                    result.Message = e.ExceptionTypeEnum.ToString();
+                    result.ErrorDetail = e.ErrorMessage;
                     break;
             }
 
