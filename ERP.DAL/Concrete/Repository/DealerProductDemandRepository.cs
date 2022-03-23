@@ -9,5 +9,6 @@ public class DealerProductDemandRepository: EfEntityRepositoryBase<DealerProduct
 {
     public DealerProductDemandRepository(ERPDbContext context) : base(context)
     {
+        
     }
 }

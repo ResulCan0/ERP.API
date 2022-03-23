@@ -48,5 +48,9 @@ namespace Core.Constants
         [Display(Name = "WrongOTP")] WrongOTP = 4012,
 
         [Display(Name = "ProductNotFound")] ProductNotFound = 4013,
+        
+        [Display(Name = "OnlyString")] OnlyString = 4014,
+        
+        [Display(Name = "OnlyInt")] OnlyInt = 4015,
     }
 }

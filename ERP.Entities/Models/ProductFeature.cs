@@ -10,17 +10,17 @@ public class ProductFeature : IEntity
 
     #region Columns
 
-    public int Appearance { get; set; }
+    public string Appearance { get; set; }
 
-    public int Availabiliyt { get; set; }
+    public string Availabiliyt { get; set; }
 
-    public int Functionality { get; set; }
+    public string Functionality { get; set; }
 
-    public int Innovation { get; set; }
+    public string Innovation { get; set; }
 
-    public int PriceAdvantage { get; set; }
+    public string PriceAdvantage { get; set; }
 
-    public int CriterionNote { get; set; }
+    public decimal CriterionNote { get; set; }
 
     #endregion
 

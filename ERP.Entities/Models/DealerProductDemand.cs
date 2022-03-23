@@ -10,7 +10,7 @@ public class DealerProductDemand : IEntity
 
     #region Columns
 
-    public int Amount { get; set; }
+    public string Amount { get; set; }
     public int DealerId { get; set; }
     
     public int ProductId { get; set; }

@@ -10,7 +10,7 @@ public class DealerBankAccount : IEntity
 
     #region Columns
 
-    public int AccountNumber { get; set; }
+    public string AccountNumber { get; set; }
     
     public int DealerId { get; set; }
     

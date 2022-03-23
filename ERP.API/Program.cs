@@ -1,4 +1,5 @@
 using ERP.Business;
+using ERP.Business.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -10,7 +10,7 @@ public class Buy : IEntity
 
     #region Columns
 
-    public int Amount { get; set; }
+    public string Amount { get; set; }
     
     public int OfferForSaleId { get; set; }
     public int CustomerId { get; set; }
