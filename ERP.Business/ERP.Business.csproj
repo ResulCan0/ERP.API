@@ -105,4 +105,9 @@
     <Folder Include="Handler\User\Validation" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Handler\Dealer\Command\CreateDealerCommand.cs" />
+    <Compile Remove="Handler\Dealer\Command\DeleteDealerCommand.cs" />
+  </ItemGroup>
+
 </Project>

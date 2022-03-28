@@ -52,5 +52,7 @@ namespace Core.Constants
         [Display(Name = "OnlyString")] OnlyString = 4014,
 
         [Display(Name = "OnlyInt")] OnlyInt = 4015,
+        
+        [Display(Name = "CharacterOver")] CharacterOver = 4016,
     }
 }
