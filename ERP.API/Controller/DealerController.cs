@@ -20,5 +20,20 @@ namespace ERP.API.Controller
         {
             return Created("", await Mediator.Send(addDealer));
         }
+        
+        [HttpPut("UpdateDealer")]
+        public async Task<IActionResult> Update([FromBody] UpdateDealerCommand updateDealerCommand)
+        {
+            return Ok(await Mediator.Send(updateDealerCommand));
+        }
+        
+        
+        [HttpDelete("DeleteDealer")]
+        public async Task<IActionResult> Delete([FromBody] DeleteDealerCommand deleteDealerCommand)
+        {
+            return Ok(await Mediator.Send(deleteDealerCommand));
+        }
+
+        
     }
 }

@@ -40,11 +40,12 @@ public class CreateDealerCommand : IRequest<IResponse>
                     $"Alanı Boş Bırakmayınız. (string) Kabul Edilmez."
                 });
             }
-            if (dealerControl.Count()!= 0)
+
+            if (dealerControl.Count() != 0)
             {
                 throw new UserFriendlyException(Messages.NameAlreadyExist, new List<string>()
                 {
-                    $"{addDealer.Name} Sistemde Kaydı Bulunmaktadır."
+                    $"{addDealer.Name} İsimli Bayi Sistemde Kayıtlıdır."
                 });
             }
 
