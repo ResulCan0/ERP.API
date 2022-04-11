@@ -9,11 +9,11 @@ namespace ERP.Business.Handler.Dealers.Command;
 
 public class CreateDealerCommand : IRequest<IResponse>
 {
-    public string Name { get; set; }
+    public string DealerName { get; set; }
 
-    public string Address { get; set; }
+    public string DealerAddress { get; set; }
 
-    public string PhoneNumber { get; set; }
+    public string DealerPhoneNumber { get; set; }
 
     public class CreateDealerCommandHandler : IRequestHandler<CreateDealerCommand, IResponse>
     {
@@ -27,9 +27,9 @@ public class CreateDealerCommand : IRequest<IResponse>
         public async Task<IResponse> Handle(CreateDealerCommand request, CancellationToken cancellationToken)
         {
             Dealer addDealer = new Dealer();
-            addDealer.Name = request.Name;
-            addDealer.Address = request.Address;
-            addDealer.PhoneNumber = request.PhoneNumber;
+            addDealer.Name = request.DealerName;
+            addDealer.Address = request.DealerAddress;
+            addDealer.PhoneNumber = request.DealerPhoneNumber;
 
             var dealerControl = await _dealerRepository.GetByUsername(addDealer.Name);
 

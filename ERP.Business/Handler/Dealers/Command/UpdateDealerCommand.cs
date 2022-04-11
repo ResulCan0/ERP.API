@@ -24,9 +24,20 @@ public class UpdateDealerCommand : IRequest<IResponse>
         public async Task<IResponse> Handle(UpdateDealerCommand request, CancellationToken cancellationToken)
         {
             Dealer updateDealer = _dealerRepository.Get(_ => _.DealerId == request.DealerId);
-            updateDealer.Name = request.Name;
-            updateDealer.Address = request.Address;
-            updateDealer.PhoneNumber = request.PhoneNumber;
+            if (request.Name != "" && request.Name != "string")
+            {
+                updateDealer.Name = request.Name;
+            }
+
+            if (request.Address != "" && request.Address != "string")
+            {
+                updateDealer.Address = request.Address;
+            }
+
+            if (request.PhoneNumber != "")
+            {
+                updateDealer.PhoneNumber = request.PhoneNumber;
+            }
 
             _dealerRepository.Update(updateDealer);
             await _dealerRepository.SaveChangesAsync();

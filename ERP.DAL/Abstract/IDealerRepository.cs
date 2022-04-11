@@ -7,5 +7,4 @@ namespace ERP.DAL.Abstract;
 public interface IDealerRepository:IEntityRepository<Dealer>
 {
     Task<IEnumerable<GetDealerNameDto>> GetByUsername(string name);
-
 }

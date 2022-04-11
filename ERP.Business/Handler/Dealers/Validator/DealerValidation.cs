@@ -8,15 +8,15 @@ public class CreateDealerCommandValidator : AbstractValidator<CreateDealerComman
 {
     public CreateDealerCommandValidator()
     {
-        RuleFor(_ => _.Name).NotEmpty().WithMessage(Messages.NotEmpty.ToString())
+        RuleFor(_ => _.DealerName).NotEmpty().WithMessage(Messages.NotEmpty.ToString())
             .MaximumLength(64).WithMessage(Messages.CharacterOver.ToString())
             .Matches(@"^[A-Za-z\s]+$").WithMessage(Messages.OnlyString.ToString());
 
-        RuleFor(_ => _.Address).NotEmpty().WithMessage(Messages.NotEmpty.ToString())
+        RuleFor(_ => _.DealerAddress).NotEmpty().WithMessage(Messages.NotEmpty.ToString())
             .MaximumLength(200).WithMessage(Messages.CharacterOver.ToString());
 
 
-        RuleFor(_ => _.PhoneNumber).NotEmpty().WithMessage(Messages.NotEmpty.ToString())
+        RuleFor(_ => _.DealerPhoneNumber).NotEmpty().WithMessage(Messages.NotEmpty.ToString())
             .MaximumLength(10).WithMessage(Messages.CharacterOver.ToString())
             .Matches(@"^[0-9]+$").WithMessage(Messages.OnlyInt.ToString());
     }
@@ -32,8 +32,7 @@ public class UpdateDealerCommandValidator : AbstractValidator<UpdateDealerComman
             .Matches(@"^[A-Za-z\s]+$").WithMessage(Messages.OnlyString.ToString());
 
         RuleFor(_ => _.Address).MaximumLength(200).WithMessage(Messages.CharacterOver.ToString());
-
-
+        
         RuleFor(_ => _.PhoneNumber).MaximumLength(10).WithMessage(Messages.CharacterOver.ToString())
             .Matches(@"^[0-9]+$").WithMessage(Messages.OnlyInt.ToString());
     }
